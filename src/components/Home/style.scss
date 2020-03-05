@@ -1,0 +1,26 @@
+.home {
+  width: 100%;
+  height: 90vh;
+  background-color: #282c34;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 25px;
+  font-size: 25px;
+  color: mediumpurple;
+  border-bottom: thin solid mediumpurple;
+
+  & > span {
+    font-size: 20px;
+    color: mediumpurple;
+    width: 100%;
+
+  }
+  & > button {
+    margin: 50px;
+    font-size: 15px;
+    color: white;
+  }
+}
