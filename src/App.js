@@ -14,12 +14,11 @@ export default function App() {
             <div className="App">
                 <Router>
                     <Header className="App-header"/>
-                    <Home/>
-                    {/*<Switch>*/}
-                    {/*    <Route exect path={ROUTES.home} component={<Home/>} />*/}
-                    {/*    <Route exect path={ROUTES.scorePage} component={<div>Score Page</div>} />*/}
-                    {/*    <Route path="/" render={() => <Redirect to="/home" />} />*/}
-                    {/*</Switch>*/}
+                    <Switch>
+                        <Route exect path={ROUTES.home} component={Home} />
+                        <Route exect path={ROUTES.scorePage} component={<div>Score Page</div>} />
+                        <Route path="/" render={() => <Redirect to={ROUTES.home} />} />
+                    </Switch>
                 </Router>
             </div>
       );
