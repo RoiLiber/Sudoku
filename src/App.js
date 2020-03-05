@@ -16,7 +16,7 @@ export default function App() {
                     <Header className="App-header"/>
                     <Switch>
                         <Route exect path={ROUTES.home} component={Home} />
-                        <Route exect path={ROUTES.scorePage} component={<div>Score Page</div>} />
+                        <Route exect path={ROUTES.scorePage} component={Home} />
                         <Route path="/" render={() => <Redirect to={ROUTES.home} />} />
                     </Switch>
                 </Router>
