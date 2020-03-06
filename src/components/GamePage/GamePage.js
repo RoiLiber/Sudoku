@@ -1,33 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector } from "react-redux";
+import { blankBoard, dices } from '../../consts';
 import './style.scss';
 
 export default function Home() {
     const newGameData = useSelector(state => state.mainReducer.newGameData);
-    const [gameLines, setGameLines] = useState([
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-    ]);
+    const [gameLines, setGameLines] = useState(blankBoard);
 
     useEffect(() => {
         const squares = newGameData.squares;
         let newGameLines = [...gameLines];
-        console.log(squares);
+
         squares.map(item => {
-            newGameLines[item.y].splice(item.x, 1, item.x)
+            newGameLines[item.y].splice(item.x, 1, item.value)
         });
-        setGameLines(newGameLines);
+        setGameLines(newGameLines)
     }, [newGameData]);
 
     return (
         <div className={'game_wrapper'}>
+            <div className={'game_dice'}>
+                {dices.map((item, index) => {
+                    return <span key={index} className={'dice'}>{item}</span>
+                })}
+            </div>
             <div className={'game_table'}>
                 {gameLines.map((item, index) => {
                     return <div key={index} className={'line'}>

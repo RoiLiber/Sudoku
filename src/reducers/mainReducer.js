@@ -22,6 +22,7 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 newGameData,
+                setNewGameLevel: false,
                 loader: false
             };
         }
