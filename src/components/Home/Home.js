@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { newGamePopUp } from '../../actions/mainActions'
 import PopUp from "../PopUp";
+import GamePage from "../GamePage/GamePage";
 import './style.scss';
 import Loader from "../Loader";
 
@@ -23,7 +24,7 @@ export default function Home() {
             <span>Sudoku Game</span>
             {
                 newGameData
-                ? <div>the game</div>
+                ? <GamePage/>
                     : <Fragment>
                         <Button
                             className={'selected'}

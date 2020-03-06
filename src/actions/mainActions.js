@@ -16,7 +16,7 @@ export const setNewGameRequest = level => {
             type: actionTypes.SET_LOADER,
                 payload: true
         });
-        fetch(`${cors}${url}new/?${9}&${level}`)
+        fetch(`${cors}${url}new/?size=${9}&level=${level}`)
             .then((response) => response.json())
             .then((data) => {
                 setTimeout(() => {
