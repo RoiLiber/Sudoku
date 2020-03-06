@@ -1,4 +1,4 @@
-.popup_wrapper {
+div.popup_wrapper {
   position: absolute;
   left: 0;
   top: 0;
@@ -21,6 +21,16 @@
     background-color: mediumpurple;
     border-radius: 10px;
     padding: 20px;
+    position: relative;
+
+    & > i {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+    }
 
     & > span {
       display: flex;

@@ -1,24 +1,26 @@
 import React from 'react';
-import './style.scss';
-import {Button} from "@material-ui/core";
-import {useDispatch} from "react-redux";
+import { Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import { Zoom } from 'react-reveal';
-import {setNewGameLevel, setNewGame} from "../../store/actions/mainActions";
+import { setNewGameRequest, newGamePopUp } from "../../actions/mainActions";
+import './style.scss';
 
 export default function PopUp(props) {
     const { title } = props;
     const dispatch = useDispatch();
 
     function setLevel(level) {
-        dispatch(setNewGameLevel(level));
-        dispatch(setNewGame(false))
+        dispatch(setNewGameRequest(level));
     }
 
     return (
-        <div className={'popup_wrapper'} onClick={() => dispatch(setNewGame(false))}>
+        <div className={'popup_wrapper'}>
             <Zoom>
                 <div className={'popup'}>
                     <span>{title}</span>
+                    <i className="far fa-times-circle"
+                       onClick={() => dispatch(newGamePopUp(false))}
+                    />
                     <Button
                         className={'selected'}
                         variant="text"

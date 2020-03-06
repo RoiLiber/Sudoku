@@ -2,13 +2,9 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import { useDispatch } from "react-redux";
 import { compose } from 'redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom';
+import { ROUTES } from '../../consts';
 import './style.scss';
-
-const ROUTES = {
-    home: '/home',
-    scorePage: '/scores',
-};
 
 function Header(props) {
     const dispatch = useDispatch();

@@ -1,20 +1,22 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import './style.scss';
-import {Button} from "@material-ui/core";
-import {useDispatch, useSelector} from "react-redux";
-import { setNewGame } from '../../store/actions/mainActions'
+import React, { Fragment, useEffect, useState } from 'react';
+import { Button } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { newGamePopUp } from '../../actions/mainActions'
 import PopUp from "../PopUp";
+import './style.scss';
+import Loader from "../Loader";
 
 export default function Home() {
-    const [Game, setGame] = useState('');
+    const [game, setGame] = useState('');
     const dispatch = useDispatch();
-    const isNewGame = useSelector(state => state.mainReducer.isNewGame);
+    const setNewGameLevel = useSelector(state => state.mainReducer.setNewGameLevel);
     const newGameData = useSelector(state => state.mainReducer.newGameData);
+    const loader = useSelector(state => state.mainReducer.loader);
 
     useEffect(() => {
-        setGame(newGameData)
-        console.log(newGameData)
-    }, [newGameData])
+        dispatch(newGamePopUp(false));
+        setGame(newGameData);
+    }, [newGameData]);
 
     return (
         <div className={'home'}>
@@ -26,13 +28,14 @@ export default function Home() {
                         <Button
                             className={'selected'}
                             variant="text"
-                            onClick={() => dispatch(setNewGame(true))}
+                            onClick={() => dispatch(newGamePopUp(true))}
                         >
                             Start a new game
                         </Button>
-                        {isNewGame && <PopUp title={'Select Level:'}/>}
+                        {setNewGameLevel && <PopUp title={'Select Level:'}/>}
                     </Fragment>
             }
+            {loader && <Loader/>}
         </div>
     )
 }
