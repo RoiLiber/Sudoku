@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { setNewGame } from '../../store/actions/mainActions'
 import PopUp from "../PopUp";
 
-export default function Home(props) {
+export default function Home() {
     const [Game, setGame] = useState('');
     const dispatch = useDispatch();
     const isNewGame = useSelector(state => state.mainReducer.isNewGame);

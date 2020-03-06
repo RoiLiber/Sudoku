@@ -18,12 +18,10 @@ export const setNewGameLevel = level => {
             .then((response) => response.json())
             .then((data) => {
                 console.log('gameData', data);
-                return (dispatch) => {
-                    dispatch({
-                        type: actionTypes.SET_NEW_GAME_LEVEL,
-                        payload: data
-                    })
-                }
+                return dispatch({
+                    type: actionTypes.SET_NEW_GAME_LEVEL,
+                    payload: data
+                })
             })
             .catch((err) => {
                 console.log(err);
