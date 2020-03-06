@@ -10,15 +10,63 @@ div.game_wrapper {
     justify-content: center;
     max-width: 450px;
     max-height: 450px;
-    padding: 100px 0;
+    padding: 50px 0;
 
-    & > div.square {
-      width: 50px;
+    & > div.line {
+      width: 550px;
       height: 50px;
-      border: thin solid white;
+      border-top: thin solid white;
+      border-bottom: thin solid white;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      & > span.square {
+        width: 50px;
+        height: 50px;
+        border-right: thin solid white;
+        border-left: thin solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+      & > span.square:nth-child(3) {
+        border-right: 2px solid mediumpurple;
+      }
+      & > span.square:nth-child(6) {
+        border-right: 2px solid mediumpurple;
+      }
+      & > span.square:nth-child(4) {
+        border-left: 2px solid mediumpurple;
+      }
+      & > span.square:nth-child(7) {
+        border-left: 2px solid mediumpurple;
+      }
+      & > span.square:nth-child(1) {
+        border-left: 4px solid mediumpurple;
+      }
+      & > span.square:nth-child(9) {
+        border-right: 4px solid mediumpurple;
+      }
     }
+    & > div.line:nth-child(3) {
+      border-bottom: 2px solid mediumpurple;
+    }
+    & > div.line:nth-child(6) {
+      border-bottom: 2px solid mediumpurple;
+    }
+    & > div.line:nth-child(4) {
+      border-top: 2px solid mediumpurple;
+    }
+    & > div.line:nth-child(7) {
+      border-top: 2px solid mediumpurple;
+    }
+    & > div.line:nth-child(1) {
+      border-top: 4px solid mediumpurple;
+    }& > div.line:nth-child(9) {
+       border-bottom: 4px solid mediumpurple;
+     }
+
   }
 }
