@@ -5,6 +5,7 @@ div.game_wrapper {
   justify-content: center;
   align-items: center;
   position: relative;
+  flex-wrap: wrap;
 
   & > div.game_table {
     display: flex;
@@ -13,7 +14,7 @@ div.game_wrapper {
     max-width: 450px;
     max-height: 450px;
     width: 100%;
-    margin: 100px 0;
+    margin: 50px 0;
 
     & > div.line {
       width: 550px;
@@ -67,6 +68,7 @@ div.game_wrapper {
     justify-content: center;
     position: absolute;
     left: calc( 50% - 320px);
+    //top: 50px;
 
     & > span.dice {
       width: 40px;
@@ -75,12 +77,24 @@ div.game_wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: mediumpurple;
+      color: white;
+      background-color: mediumpurple;
       margin: 5px;
       cursor: pointer;
       border-radius: 10px;
       font-size: 25px;
       padding-bottom: 3px;
     }
+  }
+  & > div.clear_button_wrapper {
+    position: absolute;
+    top: 550px;
+    width: 100%;
+     & > button.clear_table {
+       border: thin solid mediumpurple;
+       padding: 10px 15px;
+       color: mediumpurple;
+       height: 50px;
+     }
   }
 }

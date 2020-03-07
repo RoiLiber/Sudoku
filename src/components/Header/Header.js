@@ -19,7 +19,7 @@ function Header(props) {
                     <Button
                         className={'selected'}
                         variant="text"
-                        onClick={() => {}}
+                        // onClick={() => {}}
                     >
                         Home
                     </Button>
@@ -28,7 +28,7 @@ function Header(props) {
                     <Button
                         className={'selected'}
                         variant="text"
-                        onClick={() => {}}
+                        // onClick={() => {}}
                     >
                         Score Page
                     </Button>

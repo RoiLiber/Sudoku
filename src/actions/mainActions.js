@@ -24,7 +24,7 @@ export const setNewGameRequest = level => {
                         type: actionTypes.SET_NEW_GAME_REQUEST,
                         payload: data
                     })
-                }, 3000)
+                }, 2000)
             })
             .catch((err) => {
                 console.log(err);
