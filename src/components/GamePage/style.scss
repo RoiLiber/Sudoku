@@ -36,7 +36,8 @@ div.game_wrapper {
         color: white;
       }
       & > span.err {
-        background-color: crimson;
+        color: crimson;
+        font-size: 35px;
       }
       & > span.square:nth-child(3), span.square:nth-child(6) {
         border-right: 2px solid mediumpurple;
@@ -82,16 +83,19 @@ div.game_wrapper {
       color: white;
       background-color: mediumpurple;
       margin: 5px;
-      cursor: pointer;
       border-radius: 10px;
       font-size: 25px;
       padding-bottom: 3px;
+    }
+    & > span.pointer {
+      cursor: pointer;
     }
   }
   & > div.clear_button_wrapper {
     position: absolute;
     top: 550px;
     width: 100%;
+
      & > button.clear_table {
        border: thin solid mediumpurple;
        padding: 10px 15px;
