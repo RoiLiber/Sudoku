@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import { blankBoard, dices } from '../../consts';
 import { Button } from "@material-ui/core";
@@ -8,7 +8,8 @@ export default function Home() {
     const newGameData = useSelector(state => state.mainReducer.newGameData);
     const [gameTable, setGameTable] = useState(blankBoard);
     const [dragDice, setDragDice] = useState('');
-    const [dropLineAndIndex, setDropLineAndIndex] = useState('');
+    const [dropLineAndIndex, setDropLineAndIndex] = useState({});
+    const [isDiceValid, setIsDiceValid] = useState(true);
 
     useEffect(() => {
         setTable()
@@ -36,14 +37,28 @@ export default function Home() {
         e.preventDefault();
         setDropLineAndIndex({ line, lineIndex });
         newGameLines[line].splice(lineIndex, 1, dragDice);
+        diceValidation(line, lineIndex);
         setGameTable(newGameLines)
+    }
+
+    function diceValidation(line, lineIndex) {
+        gameTable[line].map((item, index) => {
+            if (lineIndex !== index && dragDice === Number(item)) {
+                setIsDiceValid(false)
+            }
+        });
+        gameTable.map((item, index) => {
+            if (line !== index && dragDice === Number(item[lineIndex])) {
+                setIsDiceValid(false)
+            }
+        });
     }
 
     function clearLastDice() {
         let newGameLines = [...gameTable];
-
         newGameLines[dropLineAndIndex.line].splice(dropLineAndIndex.lineIndex, 1, '');
-        setGameTable(newGameLines)
+        setGameTable(newGameLines);
+        setIsDiceValid(true)
     }
 
     return (
@@ -52,7 +67,7 @@ export default function Home() {
                 {dices.map((item, index) => {
                     return <span key={index}
                                  className={'dice'}
-                                 draggable={true}
+                                 draggable={isDiceValid}
                                  onDragStart={(event) => onDragStart(event, index+1)}
                     >{item}</span>
                 })}
@@ -62,8 +77,12 @@ export default function Home() {
                     return <div key={i} className={'line'}>
                         {item.map((square, index) => {
                             const line = i;
+                            const err = dropLineAndIndex.line === line
+                                && dropLineAndIndex.lineIndex === index
+                                && !isDiceValid;
+
                             return <span key={index}
-                                         className={'square'}
+                                         className={`square ${err ? 'err' : ''}`}
                                          onDragOver={(event) => !square ? onDragOver(event) : {}}
                                          onDrop={(event) => onDrop(event, line, index)}
                             >{square}</span>
@@ -71,7 +90,7 @@ export default function Home() {
                     </div>
                 })}
             </div>
-            {dropLineAndIndex &&
+            {!isDiceValid &&
                 <div className={'clear_button_wrapper'}>
                     <Button
                         className={'clear_table'}
