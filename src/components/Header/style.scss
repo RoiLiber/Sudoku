@@ -22,14 +22,9 @@ div.header {
         font-size: 15px;
         color: white;
       }
-      button.selected {
+      & > button.selected {
         color: greenyellow;
       }
-      button.not_selected {
-        color: white;
-      }
     }
-
   }
-
 }

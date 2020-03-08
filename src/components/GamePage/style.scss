@@ -1,6 +1,5 @@
 div.game_wrapper {
   width: 100%;
-  //height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +33,9 @@ div.game_wrapper {
         align-items: center;
         justify-content: center;
         color: white;
+      }
+      & > span.square:hover {
+        background-color: rgba(white, 0.3);
       }
       & > span.err {
         color: crimson;
@@ -87,14 +89,19 @@ div.game_wrapper {
       font-size: 25px;
       padding-bottom: 3px;
     }
-    & > span.pointer {
-      cursor: pointer;
+    & > span.chosen {
+      background-color: greenyellow;
+      border: 2px solid mediumpurple;
+      color: mediumpurple;
     }
   }
-  & > div.clear_button_wrapper {
+  & > div.button_wrapper {
     position: absolute;
     top: 550px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
      & > button.clear_table {
        border: thin solid mediumpurple;
@@ -102,5 +109,28 @@ div.game_wrapper {
        color: mediumpurple;
        height: 50px;
      }
+     & > button.stop_game {
+       margin: 0 15px;
+       right: 190px;
+     }
   }
 }
+span.pointer {
+  cursor: pointer;
+}
+div.done_wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > span.done {
+    position: absolute;
+    top: 200px;
+    color: white;
+    background-color: mediumpurple;
+    padding: 30px 95px;
+    border-radius: 20px;
+  }
+}
+

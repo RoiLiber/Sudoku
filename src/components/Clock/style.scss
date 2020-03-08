@@ -1,0 +1,27 @@
+div.clock_wrapper {
+  position: absolute;
+  top: 550px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > div.clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: mediumpurple;
+    padding: 5px 15px;
+    border: thin solid greenyellow;
+    border-radius: 15px;
+    position: relative;
+    left: 175px;
+
+    & > span {
+      font-size: 25px;
+      color: #282c34;
+      margin: 0 2px;
+    }
+  }
+}
+

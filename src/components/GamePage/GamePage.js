@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
+import React, { Fragment, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { blankBoard, dices } from '../../consts';
 import { Button } from "@material-ui/core";
+import { Fade, Zoom } from 'react-reveal';
+import { newGamePopUp } from "../../actions/mainActions";
+import Clock from "../Clock";
 import './style.scss';
 
 export default function Home() {
+    const dispatch = useDispatch();
     const newGameData = useSelector(state => state.mainReducer.newGameData);
     const [gameTable, setGameTable] = useState(blankBoard);
     const [dragDice, setDragDice] = useState('');
     const [dropLineAndIndex, setDropLineAndIndex] = useState({});
     const [isDiceValid, setIsDiceValid] = useState(true);
-    const [isGameDone, setIsGameDone] = useState(false);
+    const [stopClock, setStopClock] = useState(false);
 
     useEffect(() => {
-        setTable()
+        setTable();
     }, [newGameData]);
 
     function setTable() {
@@ -29,17 +33,21 @@ export default function Home() {
     function onDragStart(e, num) {
         setDragDice(num)
     }
+
     function onDragOver(e) {
         e.preventDefault();
     }
+
     function onDrop(e, line, lineIndex) {
+        if (gameTable[line][lineIndex] !== '') {return}
         let newGameLines = [...gameTable];
 
         e.preventDefault();
         setDropLineAndIndex({ line, lineIndex });
         newGameLines[line].splice(lineIndex, 1, dragDice);
         diceValidation(line, lineIndex);
-        setGameTable(newGameLines)
+        setGameTable(newGameLines);
+        setDragDice('')
     }
 
     function validateDoneGame() {
@@ -53,7 +61,7 @@ export default function Home() {
             return isEmpty
         }
         const isGameTableDone = !checkClearItems() && isDiceValid;
-        setIsGameDone(isGameTableDone)
+        setStopClock(isGameTableDone)
     }
 
     function diceValidation(line, lineIndex) {
@@ -167,62 +175,70 @@ export default function Home() {
     }
 
     return (
-        <div className={'game_wrapper'}>
-            <div className={'game_dice'}>
-                {dices.map((item, index) => {
-                    return <span key={index}
-                                 className={`dice ${isDiceValid ? 'pointer' : ''}`}
-                                 draggable={isDiceValid}
-                                 onDragStart={(event) => onDragStart(event, index+1)}
-                    >{item}</span>
-                })}
-            </div>
-            <div className={'game_table'}>
-                {gameTable.map((item, i) => {
-                    return <div key={i} className={'line'}>
-                        {item.map((square, index) => {
-                            const line = i;
-                            const err = dropLineAndIndex.line === line
-                                && dropLineAndIndex.lineIndex === index
-                                && !isDiceValid;
+        <Fragment>
+            {stopClock && <Zoom delay={1000}><div className={'done_wrapper'}><span className={'done'}>Nice You Did It</span></div></Zoom>}
+            <div className={'game_wrapper'}>
+                <div className={'game_dice'}>
+                    {dices.map((item, index) => {
+                        return <Fade key={index} bottom delay={200 * index}>
+                            <span draggable={isDiceValid}
+                                  className={`dice ${isDiceValid ? 'pointer' : ''} ${dragDice === index+1 ? 'chosen' : ''}`}
+                                  onDragStart={(event) => onDragStart(event, index+1)}
+                                  onClick={(event) => onDragStart(event, index+1)}
+                            >{item}</span>
+                        </Fade>
+                    })}
+                </div>
+                <Zoom>
+                    <div className={'game_table'}>
+                        {gameTable.map((item, i) => {
+                            return <div key={i} className={'line'}>
+                                {item.map((square, index) => {
+                                    const line = i;
+                                    const err = dropLineAndIndex.line === line
+                                        && dropLineAndIndex.lineIndex === index
+                                        && !isDiceValid;
 
-                            return <span key={index}
-                                         className={`square ${err ? 'err' : ''}`}
-                                         onDragOver={(event) => !square ? onDragOver(event) : {}}
-                                         onDrop={(event) => onDrop(event, line, index)}
-                            >{square}</span>
+                                    return <span key={index}
+                                                 className={`square ${err ? 'err' : ''} ${dragDice !== '' ? 'pointer' : ''}`}
+                                                 onDragOver={(event) => !square ? onDragOver(event) : {}}
+                                                 onDrop={(event) => onDrop(event, line, index)}
+                                                 onClick={(event) => onDrop(event, line, index)}
+                                    >{square}</span>
+                                })}
+                            </div>
                         })}
                     </div>
-                })}
+                </Zoom>
+                <Clock stopClock={stopClock}/>
+                {!isDiceValid && !stopClock &&
+                    <div className={'button_wrapper'}>
+                        <Button
+                            className={'clear_table'}
+                            variant="text"
+                            onClick={() => clearLastDice()}
+                        >
+                            Clear Last Dice
+                        </Button>
+                    </div>}
+                {stopClock &&
+                    <div className={'button_wrapper'}>
+                        <Button
+                            className={'clear_table stop_game'}
+                            variant="text"
+                            onClick={() => {}}
+                        >
+                            Done
+                        </Button>
+                        {/*<Button*/}
+                        {/*    className={'clear_table stop_game'}*/}
+                        {/*    variant="text"*/}
+                        {/*    onClick={() => dispatch(newGamePopUp(true))}*/}
+                        {/*>*/}
+                        {/*    Play Again*/}
+                        {/*</Button>*/}
+                    </div>}
             </div>
-            {!isDiceValid &&
-                <div className={'clear_button_wrapper'}>
-                    <Button
-                        className={'clear_table'}
-                        variant="text"
-                        onClick={() => clearLastDice()}
-                    >
-                        Clear Last Dice
-                    </Button>
-                </div>}
-            {isGameDone &&
-                <div className={'clear_button_wrapper'}>
-                    <span>Nice You Did It</span>
-                    <Button
-                        className={'clear_table'}
-                        variant="text"
-                        onClick={() => {}}
-                    >
-                        Done
-                    </Button>
-                    <Button
-                        className={'clear_table'}
-                        variant="text"
-                        onClick={() => {}}
-                    >
-                        Play Again
-                    </Button>
-                </div>}
-        </div>
+        </Fragment>
     )
 }
