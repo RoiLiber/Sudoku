@@ -1,17 +1,19 @@
 @import "../../styles/colorsConfig";
+@import "../../styles/mixins";
 
 div.score_page {
   width: 100%;
-  height: 90vh;
-  padding: 50px;
+  min-height: 100vh;
+  padding: 15vh 50px 5vh 50px;
   font-size: 45px;
   color: $primary-white;
   background-color: $primary-background;
+  border-bottom: thin solid $primary-purple;
+  overflow: hidden;
 
   & > div.scores_wrapper {
-    display: flex;
+    @include center-flex();
     flex-direction: column;
-    align-items: center;
 
     & > span {
       width: 30%;

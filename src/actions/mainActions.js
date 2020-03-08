@@ -10,6 +10,24 @@ export const newGamePopUp = boll => {
     }
 };
 
+export const isGameDone = boll => {
+    return (dispatch) => {
+        dispatch({
+            type: actionTypes.IS_GAME_DONE,
+            payload: boll
+        })
+    }
+};
+
+export const clearState = initialState => {
+    return (dispatch) => {
+        dispatch({
+            type: actionTypes.CLEAR_STATE,
+            payload: initialState
+        })
+    }
+};
+
 export const setNewGameRequest = level => {
     return (dispatch) => {
         dispatch({

@@ -108,17 +108,4 @@ div.game_wrapper {
 span.pointer {
   cursor: pointer;
 }
-div.done_wrapper {
-  @include center-flex();
-  width: 100%;
-
-  & > span.done {
-    position: absolute;
-    top: 200px;
-    color: $primary-white;
-    background-color: $primary-purple;
-    padding: 30px 95px;
-    border-radius: 20px;
-  }
-}
 

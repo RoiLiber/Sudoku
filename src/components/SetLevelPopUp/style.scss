@@ -1,0 +1,27 @@
+@import "../../styles/colorsConfig";
+@import "../../styles/mixins";
+
+div.select_level_wrapper {
+  @include center-flex();
+
+  & > i {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: $primary-white;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  & > div.buttons_wrapper {
+    @include center-flex();
+    position: absolute;
+    bottom: 50px;
+
+    & > button {
+      @include center-flex();
+      margin: 10px;
+      padding: 10px 20px;
+      border: thin solid $primary-background;
+    }
+  }
+}

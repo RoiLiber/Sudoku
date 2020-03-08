@@ -1,0 +1,28 @@
+@import "../../styles/colorsConfig";
+@import "../../styles/mixins";
+
+div.select_action_wrapper {
+  @include center-flex();
+  flex-wrap: wrap;
+
+  & > span.time {
+    @include center-flex();
+    width: 100%;
+    font-size: 20px;
+    color: $primary-white;
+  }
+
+  & > div.buttons_wrapper {
+    @include center-flex();
+    width: 100%;
+    margin: 35px;
+
+    & > button.stop_game {
+      border: thin solid $primary-background;
+      padding: 10px 15px;
+      color: $primary-background;
+      height: 50px;
+      margin: 0 15px;
+    }
+  }
+}

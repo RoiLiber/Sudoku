@@ -12,6 +12,8 @@ div.header {
   font-size: 25px;
   color: $primary-purple;
   border-bottom: thin solid $primary-purple;
+  position: fixed;
+  top: 0;
 
   div.nav {
     @include center-flex();

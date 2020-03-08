@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
     setNewGameLevel: false,
+    gameDone: false,
     newGameData: '',
     loader: false
 };
@@ -32,6 +33,19 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loader: boll
+            };
+        }
+        case actionTypes.IS_GAME_DONE: {
+            const gameDone = action.payload;
+
+            return {
+                ...state,
+                gameDone
+            };
+        }
+        case actionTypes.CLEAR_STATE: {
+            return {
+                initialState
             };
         }
         default:

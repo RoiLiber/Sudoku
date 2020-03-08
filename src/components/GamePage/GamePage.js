@@ -2,8 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { blankBoard, dices } from '../../consts';
 import { Button } from "@material-ui/core";
+import { isGameDone } from '../../actions/mainActions';
 import { Fade, Zoom } from 'react-reveal';
-import { newGamePopUp } from "../../actions/mainActions";
 import Clock from "../Clock";
 import './style.scss';
 
@@ -61,7 +61,8 @@ export default function Home() {
             return isEmpty
         }
         const isGameTableDone = !checkClearItems() && isDiceValid;
-        setStopClock(isGameTableDone)
+        setStopClock(isGameTableDone);
+        dispatch(isGameDone(isGameTableDone))
     }
 
     function diceValidation(line, lineIndex) {
@@ -176,7 +177,6 @@ export default function Home() {
 
     return (
         <Fragment>
-            {stopClock && <Zoom delay={1000}><div className={'done_wrapper'}><span className={'done'}>Nice You Did It</span></div></Zoom>}
             <div className={'game_wrapper'}>
                 <div className={'game_dice'}>
                     {dices.map((item, index) => {
@@ -220,23 +220,6 @@ export default function Home() {
                         >
                             Clear Last Dice
                         </Button>
-                    </div>}
-                {stopClock &&
-                    <div className={'button_wrapper'}>
-                        <Button
-                            className={'clear_table stop_game'}
-                            variant="text"
-                            onClick={() => {}}
-                        >
-                            Done
-                        </Button>
-                        {/*<Button*/}
-                        {/*    className={'clear_table stop_game'}*/}
-                        {/*    variant="text"*/}
-                        {/*    onClick={() => dispatch(newGamePopUp(true))}*/}
-                        {/*>*/}
-                        {/*    Play Again*/}
-                        {/*</Button>*/}
                     </div>}
             </div>
         </Fragment>

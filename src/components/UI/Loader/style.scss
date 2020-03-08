@@ -1,5 +1,5 @@
-@import "../../styles/colorsConfig";
-@import "../../styles/mixins";
+@import "../../../styles/colorsConfig";
+@import "../../../styles/mixins";
 
 div.loader_wrapper {
   @include center-flex();
