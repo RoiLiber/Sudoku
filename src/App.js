@@ -4,7 +4,7 @@ import Home from './components/Home';
 import ScorePage from './components/ScorePage';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { ROUTES } from './consts';
-import './App.css';
+import './App.scss';
 
 export default function App() {
       return (

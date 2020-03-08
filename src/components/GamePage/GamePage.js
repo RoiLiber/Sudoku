@@ -184,7 +184,7 @@ export default function Home() {
                             <span draggable={isDiceValid}
                                   className={`dice ${isDiceValid ? 'pointer' : ''} ${dragDice === index+1 ? 'chosen' : ''}`}
                                   onDragStart={(event) => onDragStart(event, index+1)}
-                                  onClick={(event) => onDragStart(event, index+1)}
+                                  onClick={isDiceValid ? '' : (event) => onDragStart(event, index+1)}
                             >{item}</span>
                         </Fade>
                     })}

@@ -1,112 +1,102 @@
+@import "../../styles/colorsConfig";
+@import "../../styles/mixins";
+
 div.game_wrapper {
+  @include center-flex();
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   flex-wrap: wrap;
 
   & > div.game_table {
-    display: flex;
+    @include center-flex();
     flex-wrap: wrap;
-    justify-content: center;
     max-width: 450px;
     max-height: 450px;
     width: 100%;
     margin: 50px 0;
 
     & > div.line {
+      @include center-flex();
       width: 550px;
       height: 50px;
-      border-top: thin solid white;
-      border-bottom: thin solid white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-top: thin solid $primary-white;
+      border-bottom: thin solid $primary-white;
 
       & > span.square {
+        @include center-flex();
         width: 50px;
         height: 50px;
-        border-right: thin solid white;
-        border-left: thin solid white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
+        border-right: thin solid $primary-white;
+        border-left: thin solid $primary-white;
+        color: $primary-white;
       }
       & > span.square:hover {
-        background-color: rgba(white, 0.3);
+        background-color: rgba($primary-white, 0.3);
       }
       & > span.err {
-        color: crimson;
+        color: $alert-color;
         font-size: 35px;
       }
       & > span.square:nth-child(3), span.square:nth-child(6) {
-        border-right: 2px solid mediumpurple;
+        border-right: 2px solid $primary-purple;
       }
       & > span.square:nth-child(4), span.square:nth-child(7) {
-        border-left: 2px solid mediumpurple;
+        border-left: 2px solid $primary-purple;
       }
       & > span.square:nth-child(1) {
-        border-left: 4px solid mediumpurple;
+        border-left: 4px solid $primary-purple;
       }
       & > span.square:nth-child(9) {
-        border-right: 4px solid mediumpurple;
+        border-right: 4px solid $primary-purple;
       }
     }
     & > div.line:nth-child(3), div.line:nth-child(6) {
-      border-bottom: 2px solid mediumpurple;
+      border-bottom: 2px solid $primary-purple;
     }
     & > div.line:nth-child(4), div.line:nth-child(7) {
-      border-top: 2px solid mediumpurple;
+      border-top: 2px solid $primary-purple;
     }
     & > div.line:nth-child(1) {
-      border-top: 4px solid mediumpurple;
+      border-top: 4px solid $primary-purple;
     }
     & > div.line:nth-child(9) {
-      border-bottom: 4px solid mediumpurple;
+      border-bottom: 4px solid $primary-purple;
     }
   }
   & > div.game_dice {
-    display: flex;
+    @include center-flex();
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     position: absolute;
     left: calc( 50% - 320px);
 
     & > span.dice {
+      @include center-flex();
       width: 40px;
       height: 40px;
-      border: thin solid white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      background-color: mediumpurple;
+      border: thin solid $primary-white;
+      color: $primary-white;
+      background-color: $primary-purple;
       margin: 5px;
       border-radius: 10px;
       font-size: 25px;
       padding-bottom: 3px;
     }
     & > span.chosen {
-      background-color: greenyellow;
-      border: 2px solid mediumpurple;
-      color: mediumpurple;
+      background-color: $primary-green;
+      border: 2px solid $primary-purple;
+      color: $primary-purple;
     }
   }
   & > div.button_wrapper {
+    @include center-flex();
     position: absolute;
     top: 550px;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
      & > button.clear_table {
-       border: thin solid mediumpurple;
+       border: thin solid $primary-purple;
        padding: 10px 15px;
-       color: mediumpurple;
+       color: $primary-purple;
        height: 50px;
      }
      & > button.stop_game {
@@ -119,16 +109,14 @@ span.pointer {
   cursor: pointer;
 }
 div.done_wrapper {
+  @include center-flex();
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   & > span.done {
     position: absolute;
     top: 200px;
-    color: white;
-    background-color: mediumpurple;
+    color: $primary-white;
+    background-color: $primary-purple;
     padding: 30px 95px;
     border-radius: 20px;
   }

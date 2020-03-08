@@ -1,25 +1,24 @@
+@import "../../styles/colorsConfig";
+@import "../../styles/mixins";
+
 div.clock_wrapper {
+  @include center-flex();
   position: absolute;
   top: 550px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   & > div.clock {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: mediumpurple;
+    @include center-flex();
+    background-color: $primary-purple;
     padding: 5px 15px;
-    border: thin solid greenyellow;
+    border: thin solid $primary-green;
     border-radius: 15px;
     position: relative;
     left: 175px;
 
     & > span {
       font-size: 25px;
-      color: #282c34;
+      color: $primary-background;
       margin: 0 2px;
     }
   }

@@ -1,0 +1,10 @@
+@import "./styles/colorsConfig";
+
+.App {
+  text-align: center;
+  background-color: $primary-background;
+}
+
+* {
+  box-sizing: border-box;
+}
