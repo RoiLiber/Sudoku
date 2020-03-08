@@ -4,7 +4,8 @@ const initialState = {
     setNewGameLevel: false,
     gameDone: false,
     newGameData: '',
-    loader: false
+    loader: false,
+    gameTime: ''
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -41,6 +42,13 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 gameDone
+            };
+        }
+        case actionTypes.SET_TIMER_RESULT: {
+            const gameTime = action.payload;
+            return {
+                ...state,
+                gameTime
             };
         }
         case actionTypes.CLEAR_STATE: {

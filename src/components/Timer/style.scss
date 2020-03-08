@@ -1,13 +1,13 @@
 @import "../../styles/colorsConfig";
 @import "../../styles/mixins";
 
-div.clock_wrapper {
+div.timer_wrapper {
   @include center-flex();
   position: absolute;
   top: 550px;
   width: 100%;
 
-  & > div.clock {
+  & > div.timer {
     @include center-flex();
     background-color: $primary-purple;
     padding: 5px 15px;

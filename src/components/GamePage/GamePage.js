@@ -4,13 +4,13 @@ import { blankBoard, dices } from '../../consts';
 import { Button } from "@material-ui/core";
 import { isGameDone } from '../../actions/mainActions';
 import { Fade, Zoom } from 'react-reveal';
-import Clock from "../Clock";
+import Timer from "../Timer";
 import './style.scss';
 
 export default function Home() {
     const dispatch = useDispatch();
     const newGameData = useSelector(state => state.mainReducer.newGameData);
-    const [gameTable, setGameTable] = useState(blankBoard);
+    const [gameTable, setGameTable] = useState([]);
     const [dragDice, setDragDice] = useState('');
     const [dropLineAndIndex, setDropLineAndIndex] = useState({});
     const [isDiceValid, setIsDiceValid] = useState(true);
@@ -22,7 +22,7 @@ export default function Home() {
 
     function setTable() {
         const squares = newGameData.squares;
-        const newGameTable = [...blankBoard];
+        const newGameTable = JSON.parse(JSON.stringify(blankBoard));
 
         squares.map(item => {
             newGameTable[item.y].splice(item.x, 1, item.value)
@@ -61,6 +61,7 @@ export default function Home() {
             return isEmpty
         }
         const isGameTableDone = !checkClearItems() && isDiceValid;
+        console.log()
         setStopClock(isGameTableDone);
         dispatch(isGameDone(isGameTableDone))
     }
@@ -184,7 +185,7 @@ export default function Home() {
                             <span draggable={isDiceValid}
                                   className={`dice ${isDiceValid ? 'pointer' : ''} ${dragDice === index+1 ? 'chosen' : ''}`}
                                   onDragStart={(event) => onDragStart(event, index+1)}
-                                  onClick={isDiceValid ? '' : (event) => onDragStart(event, index+1)}
+                                  onClick={isDiceValid ? null : (event) => onDragStart(event, index+1)}
                             >{item}</span>
                         </Fade>
                     })}
@@ -210,7 +211,7 @@ export default function Home() {
                         })}
                     </div>
                 </Zoom>
-                <Clock stopClock={stopClock}/>
+                <Timer stopClock={stopClock}/>
                 {!isDiceValid && !stopClock &&
                     <div className={'button_wrapper'}>
                         <Button

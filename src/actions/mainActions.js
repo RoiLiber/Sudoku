@@ -10,6 +10,15 @@ export const newGamePopUp = boll => {
     }
 };
 
+export const setTimerResult = time => {
+    return (dispatch) => {
+        dispatch({
+            type: actionTypes.SET_TIMER_RESULT,
+            payload: time
+        })
+    }
+};
+
 export const isGameDone = boll => {
     return (dispatch) => {
         dispatch({
