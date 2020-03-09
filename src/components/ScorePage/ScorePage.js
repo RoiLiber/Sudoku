@@ -31,6 +31,12 @@ export default function ScorePage() {
         return newOrderScore
     }
 
+    function clearResult(score) {
+        // const newScoreList = scores.find(item => item.clockMin === score.minutes && item.clockSec === score.seconds);
+        //
+        // localStorage.setItem('scoresTable', JSON.stringify(newScoreList));
+    }
+
     return (
         <div className="score_page">
             <span className={'title'}>score page</span>
@@ -43,7 +49,12 @@ export default function ScorePage() {
 
                     return <div className={'score_wrapper'} key={index}>
                         <span className={'table_position'}>{index + 1}.</span>
-                        <span className={'time'}>{clockMin}:{clockSec}</span>
+                        <span className={'time'}>
+                            {clockMin}:{clockSec}
+                            <i className="far fa-times-circle"
+                               onClick={() => clearResult(score)}
+                            />
+                        </span>
                     </div>
                 })}
             </div>

@@ -4,7 +4,7 @@
 div.score_page {
   width: 100%;
   min-height: 100vh;
-  padding: 15vh 50px 5vh 50px;
+  padding: 13vh 50px 5vh 50px;
   font-size: 45px;
   color: $primary-white;
   background-color: $primary-background;
@@ -14,13 +14,14 @@ div.score_page {
   & > div.scores_wrapper {
     @include center-flex();
     flex-direction: column;
+    padding-top: 55px;
 
     & > div.score_wrapper {
       @include center-flex();
       color: $primary-purple;
       margin: 10px 0;
       display: flex;
-      padding: 5px 15px;
+      padding: 5px;
       font-size: 25px;
       position: relative;
       right: 25px;
@@ -34,6 +35,16 @@ div.score_page {
         border-bottom: thin solid $primary-white;
         width: 220px;
         padding-bottom: 5px;
+        position: relative;
+
+        & > i {
+          font-size: 20px;
+          color: $primary-white;
+          position: absolute;
+          right: 5px;
+          bottom: 10px;
+          cursor: pointer;
+        }
       }
     }
     & > div.player_score {
