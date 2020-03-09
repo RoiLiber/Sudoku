@@ -11,7 +11,7 @@ export default function Home() {
     const dispatch = useDispatch();
     const newGameData = useSelector(state => state.mainReducer.newGameData);
     const [gameTable, setGameTable] = useState([]);
-    const [dragDice, setDragDice] = useState('');
+    const [dragDice, setDragDice] = useState(null);
     const [dropLineAndIndex, setDropLineAndIndex] = useState({});
     const [isDiceValid, setIsDiceValid] = useState(true);
     const [stopClock, setStopClock] = useState(false);
@@ -19,6 +19,17 @@ export default function Home() {
     useEffect(() => {
         setTable();
     }, [newGameData]);
+
+    useEffect(() => {
+        gameTable.map(item => {
+            item.map(num => {
+                if (num === '') { return false }
+                else {
+                    validateDoneGame()
+                }
+            })
+        })
+    }, [gameTable]);
 
     function setTable() {
         const squares = newGameData.squares;
@@ -47,7 +58,7 @@ export default function Home() {
         newGameLines[line].splice(lineIndex, 1, dragDice);
         diceValidation(line, lineIndex);
         setGameTable(newGameLines);
-        setDragDice('')
+        setDragDice(null)
     }
 
     function validateDoneGame() {
@@ -61,7 +72,7 @@ export default function Home() {
             return isEmpty
         }
         const isGameTableDone = !checkClearItems() && isDiceValid;
-        console.log()
+
         setStopClock(isGameTableDone);
         dispatch(isGameDone(isGameTableDone))
     }
@@ -84,7 +95,6 @@ export default function Home() {
                 setIsDiceValid(false)
             }
         });
-        validateDoneGame()
     }
 
     function creatSquare(rowIndex, rowNumber) {
@@ -183,9 +193,9 @@ export default function Home() {
                     {dices.map((item, index) => {
                         return <Fade key={index} bottom delay={200 * index}>
                             <span draggable={isDiceValid}
-                                  className={`dice ${isDiceValid ? 'pointer' : ''} ${dragDice === index+1 ? 'chosen' : ''}`}
-                                  onDragStart={(event) => onDragStart(event, index+1)}
-                                  onClick={isDiceValid ? null : (event) => onDragStart(event, index+1)}
+                                  className={`dice ${isDiceValid ? 'pointer' : ''} ${dragDice === index + 1 ? 'chosen' : ''}`}
+                                  onDragStart={(event) => onDragStart(event, index + 1)}
+                                  onClick={isDiceValid ? (event) => onDragStart(event, index + 1) : null}
                             >{item}</span>
                         </Fade>
                     })}
@@ -212,7 +222,7 @@ export default function Home() {
                     </div>
                 </Zoom>
                 <Timer stopClock={stopClock}/>
-                {!isDiceValid && !stopClock &&
+                {!isDiceValid &&
                     <div className={'button_wrapper'}>
                         <Button
                             className={'clear_table'}

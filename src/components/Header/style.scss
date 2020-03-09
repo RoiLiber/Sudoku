@@ -14,6 +14,7 @@ div.header {
   border-bottom: thin solid $primary-purple;
   position: fixed;
   top: 0;
+  z-index: 1100;
 
   div.nav {
     @include center-flex();

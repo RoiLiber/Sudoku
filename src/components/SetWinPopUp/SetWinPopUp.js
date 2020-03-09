@@ -7,22 +7,34 @@ import './style.scss';
 export default function SetWinPopUp() {
     const dispatch = useDispatch();
     const gameTime = useSelector(state => state.mainReducer.gameTime);
-    const sec = gameTime.clockSec < 10 ? `0${gameTime.clockSec}` : gameTime.clockSec;
-    const min = gameTime.clockMin < 10 ? `0${gameTime.clockMin}` : gameTime.clockMin;
+    const seconds = gameTime && gameTime.clockSec;
+    const minutes = gameTime && gameTime.clockMin;
+    const clockSec = seconds < 10 ? `0${seconds}` : seconds;
+    const clockMin = minutes < 10 ? `0${minutes}` : minutes;
 
     function playAgain() {
         dispatch(newGamePopUp(true));
         dispatch(isGameDone(false));
     }
 
+    function setGameScore() {
+        const score = { seconds, minutes };
+        const scoresTable = localStorage.getItem('scoresTable');
+        const scores = JSON.parse(scoresTable);
+        const newScoreList = scores !== null ? [...scores, score] : [score];
+
+        localStorage.setItem('scoresTable', JSON.stringify(newScoreList));
+        dispatch(clearState());
+    }
+
     return (
         <div className={'select_action_wrapper'}>
-            <span className={'time'}>Your Time is {min}:{sec}</span>
+            <span className={'time'}>Your Time is {clockMin}:{clockSec}</span>
             <div className={'buttons_wrapper'}>
                 <Button
                     className={'stop_game'}
                     variant="text"
-                    onClick={() => dispatch(clearState())}
+                    onClick={() => setGameScore()}
                 >
                     Done
                 </Button>

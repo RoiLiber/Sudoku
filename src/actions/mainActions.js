@@ -59,6 +59,16 @@ export const setNewGameRequest = level => {
     }
 };
 
+// const removeFavoriteCity = (value) => {
+//     const { favoriteCities } = store.getState()
+//     const newFavList = favoriteCities.filter((city) => city.key !== value)
+//     localStorage.setItem('favorites', JSON.stringify(newFavList))
+//     return ({
+//         type: types.updateFavorites,
+//         favorites: newFavList,
+//     })
+// }
+
 
 
 

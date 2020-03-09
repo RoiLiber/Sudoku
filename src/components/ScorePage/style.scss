@@ -15,14 +15,29 @@ div.score_page {
     @include center-flex();
     flex-direction: column;
 
-    & > span {
-      width: 30%;
-      border-bottom: thin solid $primary-white;
+    & > div.score_wrapper {
+      @include center-flex();
       color: $primary-purple;
       margin: 10px 0;
       display: flex;
       padding: 5px 15px;
       font-size: 25px;
+      position: relative;
+      right: 25px;
+
+      & > span.table_position {
+        color: $primary-white;
+        width: 50px;
+      }
+      & > span.time {
+        @include center-flex();
+        border-bottom: thin solid $primary-white;
+        width: 220px;
+        padding-bottom: 5px;
+      }
+    }
+    & > div.player_score {
+      background-color: $primary-green;
     }
   }
 }
