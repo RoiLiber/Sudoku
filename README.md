@@ -9,7 +9,7 @@ Play Sudoku
 </div>
 
 ## Demo
-[https://roiliber.github.io/Sudoku/home](https://roiliber.github.io/Sudoku/home)
+[https://roiliber.github.io/Sudoku/](https://roiliber.github.io/Sudoku/)
 
 ## Download & Run
 Run the following commands
