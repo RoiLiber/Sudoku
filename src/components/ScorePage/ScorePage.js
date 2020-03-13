@@ -4,7 +4,7 @@ import './style.scss';
 
 export default function ScorePage() {
     const scoresTable = localStorage.getItem('scoresTable');
-    const scores = scoresTable !== "undefined" ? JSON.parse(scoresTable) : [];
+    const scores = JSON.parse(scoresTable);
 
     function orderScores() {
         let newOrderScores = [];
@@ -42,7 +42,7 @@ export default function ScorePage() {
         <div className="score_page">
             <span className={'title'}>score page</span>
             <div className={'scores_wrapper'}>
-                {scoresTable !== "undefined"
+                {scores !== null
                     ?  orderScores().map((score, index) => {
                           const seconds = score.seconds;
                           const minutes = score.minutes;
