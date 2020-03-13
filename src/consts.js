@@ -1,6 +1,7 @@
 const cors = 'https://cors-anywhere.herokuapp.com/';
 const url = 'http://www.cs.utep.edu/cheon/ws/sudoku/';
 const ERROR_MSG = 'Sorry, unable to fetch data';
+const NO_SCORES = ['Sorry, no score is yet saved', 'Play to set a new score'];
 
 const ROUTES = {
   home: '/home',
@@ -38,6 +39,7 @@ export {
   url,
   ROUTES,
   ERROR_MSG,
+  NO_SCORES,
   blankBoard,
   dices
 }

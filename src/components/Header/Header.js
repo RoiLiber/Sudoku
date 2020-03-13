@@ -15,7 +15,7 @@ function Header() {
     return (
         <div className={'header'}>
             <div>
-                <span>Sudoku App</span>
+                <span>Sudoku</span>
             </div>
             <div className={'nav'}>
                 <Link to={ROUTES.home} className={'nav_link'}>

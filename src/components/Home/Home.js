@@ -11,7 +11,7 @@ export default function Home() {
 
     return (
         <div className={'home'}>
-            <span>Sudoku Game</span>
+            <span>Play Sudoku</span>
             {newGameData
                 ? <GamePage/>
                     : <Button

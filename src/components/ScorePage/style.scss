@@ -6,7 +6,7 @@ div.score_page {
   min-height: 100vh;
   padding: 13vh 50px 5vh 50px;
   font-size: 45px;
-  color: $primary-white;
+  color: $primary-grey;
   background-color: $primary-background;
   border-bottom: thin solid $primary-purple;
   overflow: hidden;
@@ -49,6 +49,16 @@ div.score_page {
     }
     & > div.player_score {
       background-color: $primary-green;
+    }
+    & > div.no_scores {
+      @include center-flex();
+      flex-wrap: wrap;
+
+      & > span {
+        width: 100%;
+        color: $alert-color;
+        font-size: 30px;
+      }
     }
   }
 }

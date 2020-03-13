@@ -11,14 +11,14 @@ div.timer_wrapper {
     @include center-flex();
     background-color: $primary-purple;
     padding: 5px 15px;
-    border: thin solid $primary-green;
+    border: thin solid $primary-white;
     border-radius: 15px;
     position: relative;
     left: 175px;
 
     & > span {
       font-size: 25px;
-      color: $primary-background;
+      color: $primary-white;
       margin: 0 2px;
     }
   }

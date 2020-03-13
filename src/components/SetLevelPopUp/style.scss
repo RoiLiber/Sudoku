@@ -8,7 +8,7 @@ div.select_level_wrapper {
     position: absolute;
     top: 20px;
     right: 20px;
-    color: $primary-white;
+    color: $primary-background;
     font-size: 25px;
     cursor: pointer;
   }
@@ -21,7 +21,8 @@ div.select_level_wrapper {
       @include center-flex();
       margin: 10px;
       padding: 10px 20px;
-      border: thin solid $primary-background;
+      border: thin solid $primary-grey;
+      color: $primary-white;
     }
   }
 }
