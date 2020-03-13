@@ -3,9 +3,8 @@ Play Sudoku
 
 ## Preview Images
 <div style="display: flex; justify-content: space-around flex-wrap: wrap">
-  <img src="https://i.ibb.co/6gkK3n3/top.jpg" width="30%"/>
-  <img src="https://i.ibb.co/cNT0gCg/mood.jpg" width="30%"/>
-  <img src="https://i.ibb.co/WgwDWRZ/get-in-touch.jpg" width="30%"/>
+  <img src="https://i.ibb.co/qmBqQKq/Sudoku.png" width="50%"/>
+  <img src="https://i.ibb.co/bsfGNFb/Sudoku-scores.png" width="50%"/>
 </div>
 
 ## Demo
